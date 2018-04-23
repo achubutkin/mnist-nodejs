@@ -19,7 +19,7 @@ class NumberClassifier {
       if (trainedBrain) {
         this.network = Network.fromJSON(trainedBrain);
       } else {
-        this.network = new Architect.Perceptron(28 * 28, 20, 10);
+        this.network = new Architect.Perceptron(28 * 28, 16, 10);
       }
       this.trainer = new Trainer(this.network);
     }
@@ -31,8 +31,8 @@ class NumberClassifier {
     return mnist.set(trainLength);
   }
 
-  trainWithSet(set) {
-    return this.trainer.train(set);
+  trainWithSet(set, options = {}) {
+    return this.trainer.train(set, options);
   }
 
   predict(input) {
