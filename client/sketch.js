@@ -6,6 +6,7 @@ function setup() {
   const canvas = createCanvas(400, 200);
   canvas.parent('canvas-container');
   userDigit = createGraphics(200, 200);
+  userDigit.pixelDensity(1);
 }
 
 function keyPressed() {
