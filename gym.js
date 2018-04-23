@@ -11,10 +11,9 @@ const trainOptions = {
   iterations: 10,
   shuffle: true,
   log: true,
-  cost: Trainer.cost.CROSS_ENTROPY
 };
 
-classifier.trainWithSet(classifier.generateSet(5000).training, trainOptions);
+classifier.trainWithSet(classifier.generateSet(10000).training, trainOptions);
 
 const trainedBrain = JSON.stringify(classifier.getTrainedNetwork());
 fs.writeFile(fileName, trainedBrain, (error) => {

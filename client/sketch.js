@@ -3,7 +3,8 @@
 let userDigit;
 
 function setup() {
-  createCanvas(400, 200);
+  const canvas = createCanvas(400, 200);
+  canvas.parent('canvas-container');
   userDigit = createGraphics(200, 200);
 }
 
@@ -23,7 +24,7 @@ function keyPressed() {
       }
     })
       .then((response) => response.json())
-      .then(console.log);
+      .then(({ guess }) => document.querySelector('#guess').innerHTML = guess);
   }
 }
 
