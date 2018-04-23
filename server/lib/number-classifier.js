@@ -36,7 +36,12 @@ class NumberClassifier {
   }
 
   predict(input) {
-    this.network.activate(input);
+    const output = this.network.activate(input);
+    const max = output.reduce((max, activation) => Math.max(max, activation), 0);
+    return {
+      output,
+      guess: output.indexOf(max)
+    };
   }
 
   getTrainedNetwork() {

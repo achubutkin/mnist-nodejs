@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const NumberClassifier = require('./number-classifier');
@@ -11,8 +12,14 @@ const classifier = new NumberClassifier(JSON.parse(trainedBrainData));
 
 api.get('/', (req, res) => res.json({ message: 'Hola ML!' }));
 
-api.get('/predict', (req, res) => ({
-  message: 'predicting...'
-}));
+api.post('/guess', (req, res) => {
+  const { inputs } = req.body;
+  const { output, guess } = classifier.predict(inputs);
+
+  res.json({
+    output,
+    guess,
+  })
+});
 
 module.exports = api;
